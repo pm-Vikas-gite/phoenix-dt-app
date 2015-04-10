@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<configuration>
+	<!-- DT version 1.0.2 -->
+	<!-- Platform configurations -->
+	<property>
+		<name>dt.attr.MASTER_MEMORY_MB</name>
+		<value>1024</value>
+	</property>
+	<property>
+		<name>dt.attr.CONTAINER_MEMORY_MB</name>
+		<value>1024</value>
+	</property>
+	<property>
+		<name>dt.attr.HEARTBEAT_TIMEOUT_MILLIS</name>
+		<value>300000</value>
+	</property>
+	<property>
+		<name>dt.attr.DEBUG</name>
+		<value>false</value>
+	</property>
+
+	<property>
+		<name>dt.application.PhoenixRealTimeFeedbackApp.attr.CONTAINER_MEMORY_MB</name>
+		<value>3000</value>
+	</property>
+
+	<property>
+		<name>dt.application.PhoenixRealTimeFeedbackApp.attr.ENABLE_STATS_RECORDING</name>
+		<value>true</value>
+	</property>
+
+	<!-- Impression converter operator -->
+
+	<property>
+		<name>dt.application.PhoenixRealTimeFeedbackApp.operator.LoggerImpressionConverter.attr.MEMORY_MB</name>
+		<value>2500</value>
+	</property>
+
+		<!-- Dimension computation -->
+	<property>
+		<name>dt.application.PhoenixRealTimeFeedbackApp.operator.loggerDimensionsComputation.attr.MEMORY_MB</name>
+		<value>1000</value>
+	</property>
+	
+	<property>
+                <name>dt.application.PhoenixRealTimeFeedbackApp.operator.LoggerDimensionsComputation.prop.partitionCount</name>
+                <value>2</value>
+        </property>
+
+	<!-- Store operator -->
+	<property>
+		<name>dt.application.PhoenixRealTimeFeedbackApp.operator.DimensionStore.prop.partitionCount</name>
+		<value>2</value>
+	</property>
+
+	<property>
+		<name>dt.application.PhoenixRealTimeFeedbackApp.operator.DimensionStore.attr.MEMORY_MB</name>
+		<value>2000</value>
+	</property>
+	
+	
+	<!-- Kafka properties -->
+	<property>
+		<name>dt.operator.kafkaData.prop.topic</name>
+		<value>phoenixLogger</value>
+	</property>
+	<property>
+		<name>dt.operator.kafkaData.prop.brokerSet</name>
+		<value>172.20.3.40:9092</value>
+	</property>
+	<property>
+		<name>dt.operator.kafkaData.prop.strategy</name>
+		<value>one_to_many</value>
+	</property>
+	<property>
+		<name>dt.operator.kafkaData.prop.initialOffset</name>
+		<value>latest</value>
+	</property>
+	<property>
+		<name>dt.kafka.consumertype</name>
+		<value>simple</value>
+	</property>
+	<property>
+		<name>dt.operator.kafkaData.prop.zookeeper.connect</name>
+		<value>172.20.3.40:2181</value>
+	</property>
+	<property>
+		<name>dt.operator.kafkaData.prop.msgRateUpperBound</name>
+		<value>150</value>
+	</property>
+	<property>
+		<name>dt.operator.kafkaData.prop.consumer.cacheSize</name>
+		<value>8000</value>
+	</property>
+	<property>
+		<name>dt.operator.kafkaData.prop.repartitionInterval</name>
+		<value>-1</value>
+	</property>
+	<property>
+		<name>dt.application.PhoenixRealTimeFeedbackApp.operator.kafkaData.attr.MEMORY_MB</name>
+		<value>1000</value>
+	</property>
+	<property>
+		<name>dt.application.PhoenixRealTimeFeedbackApp.operator.kafkaData.prop.partitionCount</name>
+		<value>2</value>
+	</property>
+	<property>
+		<name>dt.operator.kafkaData.prop.consumer.metadataRefreshInterval</name>
+		<value>120000</value>
+	</property>
+	<property>
+		<name>dt.operator.kafkaData.prop.maxTuplesPerWindow</name>
+		<value>10</value>
+	</property>
+
+
+
+	<property>
+		<name>dt.loggers.level</name>
+		<value>phoenix.datatorrent.*:INFO,com.datatorrent.*:INFO,com.pubmatic.*:WARN,org.apache.*:WARN,com.amazonaws.*:WARN,com.amazon.ws.emr.hadoop.fs.EmrFileSystem.*:INFO,httpclient.wire.*:INFO</value>
+	</property>
+
+	<!-- S3Write expired aggregates -->
+	<property>
+		<name>dt.expired.aggregate.file.size.bytes</name>
+		<value>204857600</value>
+	</property>
+
+	<property>
+		<name>dt.expired.aggregate.file.date.format</name>
+		<value>yyyy.MM.dd.HH.mm.ss</value>
+	</property>
+
+
+	<property>
+		<name>dt.application.RealTimeApp.operator.writeToS3.attr.MEMORY_MB</name>
+		<value>2000</value>
+	</property>
+
+	<property>
+		<name>dt.application.RealTimeApp.operator.writeToS3.prop.filePath</name>
+		<value>/data-torrent-expired-aggregates/</value>
+	</property>
+
+	<property>
+		<name>dt.application.RealTimeApp.operator.writeToS3.prop.fileNameDateSeparator</name>
+		<value>/</value>
+	</property>
+	<property>
+		<name>dt.application.RealTimeApp.operator.writeToS3.prop.aggregatorIndexToStore</name>
+		<value>0,10,17</value>
+		<!-- Above property will store only day level aggregates for 3 views -->
+	</property>
+	<property>
+		<name>dt.application.RealTimeApp.operator.writeToS3.prop.append</name>
+		<value>true</value>
+	</property>
+
+	<!-- Assuming each window of 500ms, publishing metrics every hour -->
+	<property>
+		<name>dt.cloudwatch.metrics.publish.window.count</name>
+		<value>1200</value>
+	</property>
+
+	<property>
+		<name>dt.cw.metric.name.space</name>
+		<value>matrix.datatorrent.monitoring.dev</value>
+	</property>
+
+	<property>
+		<name>dt.application.PhoenixRealTimeFeedbackApp.operator.decompress.prop.partitionCount</name>
+		<value>2</value>
+	</property>
+
+	<property>
+		<name>dt.application.PhoenixRealTimeFeedbackApp.operator.decompress.attr.MEMORY_MB</name>
+		<value>1000</value>
+	</property>
+
+</configuration>
+
