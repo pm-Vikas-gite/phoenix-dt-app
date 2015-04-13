@@ -23,10 +23,7 @@ public class JdbcTransactionableOutputOperator extends AbstractJdbcTransactionab
   
   public void setup(Context.OperatorContext context){
     super.setup(context);
-    
   }
-  
-
     
   @Override
   protected String getUpdateCommand() {

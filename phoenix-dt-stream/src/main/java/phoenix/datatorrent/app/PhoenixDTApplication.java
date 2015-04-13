@@ -185,7 +185,7 @@ public class PhoenixDTApplication implements StreamingApplication {
       // topic is set via property file
       // consumer = new SimpleKafkaConsumer("jlogger", 10000, 100000, clientName, new
       // HashSet<Integer>());
-      /*consumer =
+     /* consumer =
           new SimpleKafkaConsumer(null, "jlogger", 10000, 100000, clientName,
               new HashSet<Integer>());*/
       consumer = new SimpleKafkaConsumer(null, 10000, 100000, clientName, new HashSet<Integer>());

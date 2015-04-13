@@ -50,8 +50,9 @@ public class LoggerImpressionConverter extends BaseOperator {
     List<GenericRecord> recordList = new ArrayList<GenericRecord>();
   //  Schema schema =
     //    new Schema.Parser().parse(new File("/home/vikas/phoenix/ads-logger-schema.avsc"));
-     Schema schema = new Schema.Parser().parse( new File( "/home/vikas/phoenix/phoenix-logger-schema.avsc") );
-    
+//     Schema schema = new Schema.Parser().parse( new File( "/home/hadoop/phoenix/conf/phoenix-logger-schema.avsc") );
+     Schema schema = new Schema.Parser().parse( new File( "/home/hadoop/phoenix/conf/logger.avsc") );
+
     System.out.println("[LoggerImpressionConverter] : getBinaryAvroRecords");
     GenericDatumReader<GenericRecord> reader = new GenericDatumReader<GenericRecord>(schema);
     List<byte[]> binaryAvroRecords = new ArrayList<byte[]>();
